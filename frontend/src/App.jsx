@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import ListTodos from './components/ListTodos'
+import CreateTodos from './components/CreateTodos'
 import './App.css'
 
 function App() {
@@ -8,7 +8,8 @@ function App() {
 
   return (
     <>
-      <h1 className=''>Your count is {count} </h1>
+      <CreateTodos />
+      <ListTodos />
     </>
   )
 }
