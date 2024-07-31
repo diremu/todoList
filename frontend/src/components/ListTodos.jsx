@@ -20,23 +20,23 @@ const ListTodos = () => {
     return (
         <>
             <div className="border-gray-200 border-2">
-                <table className="table-fixed w-full px-4">
+                <table className="table-auto w-full px-4">
                     <thead>
                         <tr>
-                            <th className="w-[10vw]">S/N</th>
-                            <th className="w-[90vw]">Description</th>
+                            <th className="w-[10vw] font-semibold text-xl">S/N</th>
+                            <th className="w-[90vw] font-semibold text-xl">Description</th>
                         </tr>
                     </thead>
                     <tbody>
                         {todos.length > 0 ? todos.map(
                             (todo) => (
-                                <tr key={todo.todo_id} className=" bg-yellow-400  rounded-xl my-4">
+                                <tr key={todo.todo_id} className={`${(todo.todo_id % 2) == 0 ? `bg-yellow-400 ` : `bg-gray-400`} rounded-xl my-4 border-b-2 border-gray-200 mb-2 `}>
                                     <td className="text-xl text-center">{todo.todo_id}</td>
                                     <td className="flex justify-between items-center mr-6">
                                     <span className="text-xl">{todo.description}</span>
-                                    <div className=" inline-flex space-x-2">
-                                        <button>&#10003;</button>
-                                        <button>&#10005;</button>
+                                    <div className=" inline-flex space-x-4 mr-6">
+                                        <button className="bg-green-400 w-10 h-10 rounded-full text-white hover:bg-green-600 hover:opacity-80 transition-all ">&#10003;</button>
+                                        <button className="bg-red-400 w-10 h-10 rounded-full text-white hover:bg-red-600 hover:opacity-80 transition-all">&#10005;</button>
                                     </div>
 
                                     </td>
