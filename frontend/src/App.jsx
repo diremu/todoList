@@ -4,13 +4,12 @@ import CreateTodos from './components/CreateTodos'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
+    <div className='bg-gradient-to-b from-red-200 to-green-300 h-[100vh]'>
       <CreateTodos />
       <ListTodos />
-    </>
+    </div>
   )
 }
 

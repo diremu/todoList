@@ -19,7 +19,7 @@ const ListTodos = () => {
 
     return (
         <>
-            <div className="border-gray-200 border-2">
+            <div className="border-gray-200 border-t-2">
                 <table className="table-auto w-full px-4">
                     <thead>
                         <tr>

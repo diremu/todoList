@@ -19,9 +19,10 @@ app.get("/todos", async (req, res) => {
 //to create a todo
 app.post("/todos", (req,res) => {
   try {
-    const {description} = req.body;
-    const newTodo = pool.query("INSERT INTO todo(description) VALUES($1) RETURNING *",[description])
+    const {description, id} = req.body;
+    const newTodo = pool.query("INSERT INTO todo(todo_id, description) VALUES($1,%2) RETURNING *",[id, description])
     res.json(newTodo.rows).status(200)
+    console.log(description)
   } catch (err) {
     console.error(err.message)
   }
