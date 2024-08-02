@@ -18,28 +18,28 @@ const CreateTodos = () => {
         }, []
     )
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         const currentTodo = todos.length + 1
         console.log(description)
-            fetch("http://localhost:5000/todos/", {
+        try {
+            const response = await fetch("http://localhost:5000/todos/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ description, currentTodo })
-            }).then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    console.log("Success:", data);
-                    window.location.reload(); // Reload the window
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                })
+                body: JSON.stringify({ description, id: currentTodo })
+            })
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            console.log("Success:", data);
+            window.location.reload(); // Reload the window
+        } catch(err) {
+            console.error(err.message)
+        }
     }
 
     return (
@@ -49,7 +49,7 @@ const CreateTodos = () => {
             </div>
             <div>
                 <input type="text" id="description" className="border-2 w-[50vw] h-[5vh]" value={description} onChange={(e) => setDescription(e.target.value)} />
-                <button className="bg-green-300 py-2 px-3 rounded-xl hover:bg-green-600 hover:text-white transition-all" onClick={handleSubmit}>Add to List</button>
+                <button className="ml-4 bg-green-300 py-2 px-3 rounded-xl hover:bg-green-600 hover:text-white transition-all" onClick={handleSubmit}>Add to List</button>
             </div>
         </div>
     )

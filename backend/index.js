@@ -17,14 +17,15 @@ app.get("/todos", async (req, res) => {
 });
 
 //to create a todo
-app.post("/todos", (req,res) => {
+app.post("/todos", async (req,res) => {
   try {
     const {description, id} = req.body;
-    const newTodo = pool.query("INSERT INTO todo(todo_id, description) VALUES($1,%2) RETURNING *",[id, description])
-    res.json(newTodo.rows).status(200)
-    console.log(description)
+    const newTodo = await pool.query("INSERT INTO todo(todo_id, description) VALUES($1,$2) RETURNING *",[id, description])
+    res.status(200).json(newTodo.rows)
+    console.log(description, id)
   } catch (err) {
     console.error(err.message)
+    res.status(500).send("Server error with posting data. Try again")
   }
 })
 
