@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { editTodo} from "./EditTodos"
 
 const ListTodos = () => {
     const [todos, setTodos] = useState([])
@@ -35,7 +36,12 @@ const ListTodos = () => {
                                     <td className="flex justify-between items-center mr-6">
                                     <span className="text-xl">{todo.description}</span>
                                     <div className=" inline-flex space-x-4 mr-6">
-                                        <button className="bg-green-400 w-10 h-10 rounded-full text-white hover:bg-green-600 hover:opacity-80 transition-all ">&#10003;</button>
+                                        {/* <button className="bg-green-400 w-10 h-10 rounded-full text-white hover:bg-green-600 hover:opacity-80 transition-all " onClick={() => {
+                                            completedTodo(todo.todo_id)
+                                        }}>&#10003;</button> */}
+                                        <button className="bg-green-400 w-10 h-10 rounded-full text-white hover:bg-green-600 hover:opacity-80 transition-all " onClick={
+                                            editTodo(todo)
+                                        }>&#x270E;</button>
                                         <button className="bg-red-400 w-10 h-10 rounded-full text-white hover:bg-red-600 hover:opacity-80 transition-all">&#10005;</button>
                                     </div>
 
